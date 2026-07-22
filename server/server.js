@@ -15,6 +15,9 @@ mongoose.connect(process.env.MONGO_URI)
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+const packageRoutes = require('./routes/packageRoutes');
+app.use('/api/packages', packageRoutes);
+
 app.get('/', (req, res) => {
   res.send('Travel Booking Server is running!');
 });
