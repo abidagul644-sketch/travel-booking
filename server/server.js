@@ -18,6 +18,9 @@ app.use('/api/auth', authRoutes);
 const packageRoutes = require('./routes/packageRoutes');
 app.use('/api/packages', packageRoutes);
 
+const bookingRoutes = require('./routes/bookingRoutes');
+app.use('/api/bookings', bookingRoutes);
+
 app.get('/', (req, res) => {
   res.send('Travel Booking Server is running!');
 });
