@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../components/Navbar';
 
 function Dashboard() {
-  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   const [packages, setPackages] = useState([]);
   const [bookingMsg, setBookingMsg] = useState('');
@@ -19,12 +18,6 @@ function Dashboard() {
     };
     fetchPackages();
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login');
-  };
 
   const handleBooking = async (pkg) => {
     try {
@@ -43,29 +36,45 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-header">
-        <h2>Welcome, {user?.name || 'Traveler'}! 🌍</h2>
-        <div>
-          <button onClick={() => navigate('/bookings')} className="btn-primary" style={{ marginRight: '10px', width: 'auto', padding: '10px 20px' }}>My Bookings</button>
-          <button onClick={handleLogout} className="btn-logout">Logout</button>
+    <div>
+      <Navbar />
+
+      <div className="hero">
+        <h1>Explore The World 🌍</h1>
+        <p>Discover amazing destinations at unbeatable prices, {user?.name}!</p>
+      </div>
+
+      <div className="dashboard-container">
+        {bookingMsg && <p style={{ textAlign: 'center', color: '#2563EB', fontWeight: 'bold', marginBottom: '15px' }}>{bookingMsg}</p>}
+
+        <h3 className="section-title">Available Travel Packages</h3>
+
+        <div className="packages-grid">
+          {packages.map((pkg) => (
+            <div key={pkg._id} className="package-card">
+              <div className="package-image-wrap">
+                <img
+                  src={`https://picsum.photos/seed/${encodeURIComponent(pkg.destination)}/400/300`}
+                  alt={pkg.destination}
+                />
+              </div>
+              <div className="wishlist-heart">🤍</div>
+              <div className="package-body">
+                <h4>{pkg.destination}</h4>
+                <div className="package-rating">⭐⭐⭐⭐⭐ (4.8)</div>
+                <p className="package-meta">📍 {pkg.destination}</p>
+                <p className="package-meta">🕒 {pkg.duration}</p>
+                <p className="package-price">Rs {pkg.price}</p>
+                <button className="btn-book" onClick={() => handleBooking(pkg)}>Book Now</button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {bookingMsg && <p style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', marginBottom: '15px' }}>{bookingMsg}</p>}
-
-      <h3 className="section-title">Available Travel Packages</h3>
-
-      <div className="packages-grid">
-        {packages.map((pkg) => (
-          <div key={pkg._id} className="package-card">
-            <h4>{pkg.destination}</h4>
-            <p>{pkg.description}</p>
-            <p><strong>Duration:</strong> {pkg.duration}</p>
-            <p className="package-price">Rs {pkg.price}</p>
-            <button className="btn-book" onClick={() => handleBooking(pkg)}>Book Now</button>
-          </div>
-        ))}
+      <div className="footer">
+        <p>© 2026 TravelEase. All rights reserved.</p>
+        <p style={{ marginTop: '8px' }}>Privacy | Terms | Contact | Facebook | Instagram</p>
       </div>
     </div>
   );
