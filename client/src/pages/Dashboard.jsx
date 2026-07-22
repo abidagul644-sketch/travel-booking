@@ -26,22 +26,22 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ maxWidth: '900px', margin: '50px auto', padding: '20px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className="dashboard-container">
+      <div className="dashboard-header">
         <h2>Welcome, {user?.name || 'Traveler'}! 🌍</h2>
-        <button onClick={handleLogout} style={{ padding: '10px 20px' }}>Logout</button>
+        <button onClick={handleLogout} className="btn-logout">Logout</button>
       </div>
 
-      <h3 style={{ marginTop: '30px' }}>Available Travel Packages</h3>
+      <h3 className="section-title">Available Travel Packages</h3>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
+      <div className="packages-grid">
         {packages.map((pkg) => (
-          <div key={pkg._id} style={{ border: '1px solid #ccc', borderRadius: '10px', padding: '15px' }}>
+          <div key={pkg._id} className="package-card">
             <h4>{pkg.destination}</h4>
             <p>{pkg.description}</p>
             <p><strong>Duration:</strong> {pkg.duration}</p>
-            <p><strong>Price:</strong> Rs {pkg.price}</p>
-            <button style={{ padding: '8px 16px', width: '100%' }}>Book Now</button>
+            <p className="package-price">Rs {pkg.price}</p>
+            <button className="btn-book">Book Now</button>
           </div>
         ))}
       </div>

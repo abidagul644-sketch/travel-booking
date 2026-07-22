@@ -25,43 +25,40 @@ function Register() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '100px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
-      <h2>Register</h2>
+    <div className="auth-container">
+      <h2>Create Account ✈️</h2>
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '15px' }}>
+        <div className="form-group">
           <label>Name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
           />
         </div>
-        <div style={{ marginBottom: '15px' }}>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
           />
         </div>
-        <div style={{ marginBottom: '15px' }}>
+        <div className="form-group">
           <label>Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ width: '100%', padding: '8px', marginTop: '5px' }}
           />
         </div>
-        <button type="submit" style={{ width: '100%', padding: '10px' }}>Register</button>
-        {message && <p style={{ marginTop: '10px', color: 'blue' }}>{message}</p>}
+        <button type="submit" className="btn-primary">Register</button>
+        {message && <p className="error-msg" style={{ color: '#764ba2' }}>{message}</p>}
       </form>
-      <p style={{ marginTop: '15px' }}>
+      <p className="link-text">
         Already have an account? <Link to="/login">Login here</Link>
       </p>
     </div>
