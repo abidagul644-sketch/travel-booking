@@ -5,6 +5,12 @@ import Navbar from '../components/Navbar';
 function Dashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [packages, setPackages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [activeSearch, setActiveSearch] = useState('');
   const [bookingMsg, setBookingMsg] = useState('');
 
   useEffect(() => {
@@ -35,22 +41,83 @@ function Dashboard() {
     }
   };
 
+  const handleSearch = () => {
+    setActiveSearch(searchTerm);
+  };
+
+  const filteredPackages = packages.filter((pkg) =>
+    pkg.destination.toLowerCase().includes(activeSearch.toLowerCase())
+  );
+
   return (
     <div>
       <Navbar />
 
       <div className="hero">
-        <h1>Explore The World 🌍</h1>
-        <p>Discover amazing destinations at unbeatable prices, {user?.name}!</p>
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <h1>Explore The World 🌍</h1>
+          <p>Book Your Dream Vacation, {user?.name}!</p>
+        </div>
+      </div>
+
+      <div className="search-bar-wrap">
+        <div className="search-bar">
+          <div className="search-field">
+            <label>📍 Destination</label>
+            <input
+              type="text"
+              placeholder="Where to?"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <div className="search-field">
+            <label>📅 Check In</label>
+            <input
+              type="date"
+              value={checkIn}
+              onChange={(e) => setCheckIn(e.target.value)}
+            />
+          </div>
+          <div className="search-field">
+            <label>📅 Check Out</label>
+            <input
+              type="date"
+              value={checkOut}
+              onChange={(e) => setCheckOut(e.target.value)}
+            />
+          </div>
+          <div className="search-field small">
+            <label>👨 Adults</label>
+            <input
+              type="number"
+              min="1"
+              value={adults}
+              onChange={(e) => setAdults(e.target.value)}
+            />
+          </div>
+          <div className="search-field small">
+            <label>👶 Children</label>
+            <input
+              type="number"
+              min="0"
+              value={children}
+              onChange={(e) => setChildren(e.target.value)}
+            />
+          </div>
+          <button className="btn-search" onClick={handleSearch}>🔍 Search</button>
+        </div>
       </div>
 
       <div className="dashboard-container">
-        {bookingMsg && <p style={{ textAlign: 'center', color: '#2563EB', fontWeight: 'bold', marginBottom: '15px' }}>{bookingMsg}</p>}
+        {bookingMsg && <p style={{ textAlign: 'center', color: '#7C3AED', fontWeight: 'bold', marginBottom: '15px' }}>{bookingMsg}</p>}
 
         <h3 className="section-title">Available Travel Packages</h3>
 
         <div className="packages-grid">
-          {packages.map((pkg) => (
+          {filteredPackages.length === 0 && <p>No packages found for "{activeSearch}"</p>}
+          {filteredPackages.map((pkg) => (
             <div key={pkg._id} className="package-card">
               <div className="package-image-wrap">
                 <img

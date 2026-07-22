@@ -57,41 +57,117 @@ body {
 
 /* HERO SECTION */
 .hero {
-  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600');
+  background-size: cover;
+  background-position: center;
   color: white;
   text-align: center;
-  padding: 70px 20px;
+  padding: 90px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.hero h1 {
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(124,58,237,0.75), rgba(0,0,0,0.5));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content h1 {
   font-size: 40px;
   margin-bottom: 10px;
 }
 
-.hero p {
+.hero-content p {
   font-size: 16px;
   opacity: 0.9;
   margin-bottom: 25px;
 }
 
-.search-box {
-  width: 100%;
-  max-width: 500px;
-  margin: 10px auto 0;
+/* SEARCH BAR (Booking.com style) */
+.search-bar-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -35px;
+  position: relative;
+  z-index: 10;
+  padding: 0 20px;
 }
 
-.search-box input {
+.search-bar {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
+  max-width: 1100px;
   width: 100%;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 30px;
-  font-size: 15px;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 140px;
+}
+
+.search-field.small {
+  min-width: 90px;
+  flex: 0.5;
+}
+
+.search-field label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.search-field input {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
   outline: none;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.search-field input:focus {
+  border-color: #7C3AED;
+}
+
+.btn-search {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #7C3AED, #A855F7);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  height: 42px;
+}
+
+.btn-search:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(124,58,237,0.4);
 }
 
 /* AUTH FORMS */
@@ -207,7 +283,7 @@ body {
 
 .package-image-wrap {
   overflow: hidden;
-  height: 180px;
+  height: 250px;
 }
 
 .package-image-wrap img {
