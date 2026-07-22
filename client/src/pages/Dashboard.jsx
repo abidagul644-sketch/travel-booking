@@ -54,7 +54,7 @@ function Dashboard() {
             <div key={pkg._id} className="package-card">
               <div className="package-image-wrap">
                 <img
-                  src={`https://picsum.photos/seed/${encodeURIComponent(pkg.destination)}/400/300`}
+                  src={`https://picsum.photos/400/300?random=${pkg._id}`}
                   alt={pkg.destination}
                 />
               </div>

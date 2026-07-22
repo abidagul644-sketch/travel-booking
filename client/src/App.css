@@ -26,7 +26,7 @@ body {
 .navbar .logo {
   font-size: 22px;
   font-weight: 800;
-  color: #2563EB;
+  color: #7C3AED;
 }
 
 .navbar ul {
@@ -42,7 +42,7 @@ body {
 }
 
 .navbar ul li:hover {
-  color: #2563EB;
+  color: #7C3AED;
 }
 
 .navbar .btn-logout {
@@ -57,10 +57,14 @@ body {
 
 /* HERO SECTION */
 .hero {
-  background: linear-gradient(135deg, #2563EB 0%, #14B8A6 100%);
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
   color: white;
   text-align: center;
   padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero h1 {
@@ -72,6 +76,22 @@ body {
   font-size: 16px;
   opacity: 0.9;
   margin-bottom: 25px;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 /* AUTH FORMS */
@@ -111,13 +131,13 @@ body {
 
 .form-group input:focus {
   outline: none;
-  border-color: #2563EB;
+  border-color: #7C3AED;
 }
 
 .btn-primary {
   width: 100%;
   padding: 12px;
-  background: #2563EB;
+  background: #7C3AED;
   color: white;
   border: none;
   border-radius: 8px;
@@ -129,7 +149,7 @@ body {
 
 .btn-primary:hover {
   transform: scale(1.02);
-  box-shadow: 0 5px 15px rgba(37,99,235,0.4);
+  box-shadow: 0 5px 15px rgba(124,58,237,0.4);
 }
 
 .link-text {
@@ -139,7 +159,7 @@ body {
 }
 
 .link-text a {
-  color: #2563EB;
+  color: #7C3AED;
   font-weight: 600;
   text-decoration: none;
 }
@@ -240,7 +260,7 @@ body {
 }
 
 .package-price {
-  color: #2563EB;
+  color: #7C3AED;
   font-size: 20px;
   font-weight: 700;
   margin: 10px 0;
@@ -249,7 +269,7 @@ body {
 .btn-book {
   width: 100%;
   padding: 10px;
-  background: linear-gradient(135deg, #2563EB, #14B8A6);
+  background: linear-gradient(135deg, #7C3AED, #A855F7);
   color: white;
   border: none;
   border-radius: 8px;
@@ -260,7 +280,7 @@ body {
 
 .btn-book:hover {
   transform: scale(1.03);
-  box-shadow: 0 5px 15px rgba(37,99,235,0.4);
+  box-shadow: 0 5px 15px rgba(124,58,237,0.4);
 }
 
 /* FOOTER */
