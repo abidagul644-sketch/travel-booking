@@ -14,9 +14,15 @@ const bookingSchema = new mongoose.Schema({
   destination: String,
   price: Number,
   duration: String,
+  travelDate: String,
+  travelers: Number,
   status: {
     type: String,
-    default: 'Confirmed'
+    default: 'Pending'
+  },
+  paymentStatus: {
+    type: String,
+    default: 'Unpaid'
   }
 }, { timestamps: true });
 

@@ -1,6 +1,5 @@
 const Package = require('../models/Package');
 
-// Sab packages laana
 const getPackages = async (req, res) => {
   try {
     const packages = await Package.find();
@@ -10,7 +9,6 @@ const getPackages = async (req, res) => {
   }
 };
 
-// Naya package add karna
 const createPackage = async (req, res) => {
   try {
     const { destination, description, price, duration, image } = req.body;
@@ -21,4 +19,23 @@ const createPackage = async (req, res) => {
   }
 };
 
-module.exports = { getPackages, createPackage };
+const getPackageById = async (req, res) => {
+  try {
+    const pkg = await Package.findById(req.params.id);
+    if (!pkg) return res.status(404).json({ message: 'Package not found' });
+    res.status(200).json(pkg);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deletePackage = async (req, res) => {
+  try {
+    await Package.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Package deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getPackages, createPackage, getPackageById, deletePackage };
