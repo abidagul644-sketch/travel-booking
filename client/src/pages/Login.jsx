@@ -37,6 +37,9 @@ function Login() {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
         <button type="submit" className="btn-primary">Login</button>
+        <p style={{ textAlign: 'right', marginTop: '8px' }}>
+          <Link to="/forgot-password" style={{ fontSize: '13px', color: '#7C3AED', fontWeight: '600' }}>Forgot Password?</Link>
+        </p>
         {message && <p className="error-msg">{message}</p>}
       </form>
       <p className="link-text">

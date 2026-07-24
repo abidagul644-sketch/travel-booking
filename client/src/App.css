@@ -1101,3 +1101,87 @@ body.dark-mode .search-field input {
   color: #1e293b;
   margin-bottom: 6px;
 }
+/* SPLASH SCREEN */
+.splash-screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.splash-content {
+  text-align: center;
+  color: white;
+  animation: splashFadeIn 0.8s ease;
+}
+
+.splash-icon-wrap {
+  width: 130px;
+  height: 130px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  animation: splashBounce 1.8s ease-in-out infinite;
+}
+
+.splash-icon {
+  font-size: 70px;
+}
+
+.splash-title {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.splash-tagline {
+  font-size: 16px;
+  opacity: 0.9;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.splash-loader {
+  width: 80px;
+  height: 5px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.splash-loader::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+  animation: splashLoading 1.2s ease-in-out infinite;
+}
+
+@keyframes splashFadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes splashBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes splashLoading {
+  0% { left: -50%; }
+  100% { left: 100%; }
+}

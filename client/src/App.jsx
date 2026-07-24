@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Splash from './pages/Splash';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import Payment from './pages/Payment';
 import BookingForm from './pages/BookingForm';
@@ -19,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/bookings" element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
           <Route path="/package/:id" element={<ProtectedRoute><PackageDetails /></ProtectedRoute>} />
@@ -27,7 +30,7 @@ function App() {
           <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
           <Route path="/booking-form/:id" element={<ProtectedRoute><BookingForm /></ProtectedRoute>} />
           <Route path="/payment/:bookingId" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Splash />} />
         </Routes>
       </BrowserRouter>
     </ToastProvider>
