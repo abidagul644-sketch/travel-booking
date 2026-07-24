@@ -662,6 +662,11 @@ body:has(.auth-container) {
   border-radius: 14px;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
 }
 
 .filters-sidebar h4 {
