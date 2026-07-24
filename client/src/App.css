@@ -113,10 +113,10 @@ body {
   background: white;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  padding: 20px;
+  padding: 25px;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 18px;
   align-items: flex-end;
   max-width: 1100px;
   width: 100%;
@@ -142,11 +142,12 @@ body {
 }
 
 .search-field input {
-  padding: 10px;
+  padding: 14px 12px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 14px;
   outline: none;
+  min-height: 46px;
 }
 
 .search-field input:focus {
@@ -171,19 +172,33 @@ body {
 }
 
 /* AUTH FORMS */
+body:has(.auth-container) {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .auth-container {
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 30px;
+  max-width: 420px;
+  width: 90%;
+  margin: 40px auto;
+  padding: 40px 35px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+.auth-container h2 {
+  font-size: 26px;
 }
 
 .auth-container h2 {
   text-align: center;
   color: #1e293b;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  font-size: 26px;
 }
 
 .form-group {
@@ -249,15 +264,19 @@ body {
 
 /* DASHBOARD */
 .dashboard-container {
-  max-width: 1100px;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 50px auto;
   padding: 20px;
 }
 
 .section-title {
   color: #1e293b;
   margin-bottom: 20px;
-  font-size: 22px;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: left;
+  width: 100%;
 }
 
 .packages-grid {
