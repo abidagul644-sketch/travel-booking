@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { API_URL } from '../config';
 
 function MyBookings() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -8,7 +9,7 @@ function MyBookings() {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/bookings/${user.id}`);
+      const res = await axios.get(`${API_URL}/api/bookings/${user.id}`);
       setBookings(res.data);
     } catch (error) {
       console.log('Error fetching bookings:', error);
@@ -21,7 +22,7 @@ function MyBookings() {
 
   const handleCancel = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/bookings/cancel/${id}`);
+      await axios.put(`${API_URL}/api/bookings/cancel/${id}`);
       fetchBookings();
     } catch (error) {
       console.log('Error cancelling booking:', error);

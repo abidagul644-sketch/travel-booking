@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function Wishlist() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Wishlist() {
 
   const fetchWishlist = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/wishlist/${user.id}`);
+      const res = await axios.get(`${API_URL}/api/wishlist/${user.id}`);
       setWishlist(res.data);
     } catch (error) {
       console.log('Error fetching wishlist:', error);
@@ -25,7 +26,7 @@ function Wishlist() {
 
   const removeFromWishlist = async (packageId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/wishlist/${packageId}`, { data: { userId: user.id } });
+      await axios.delete(`${API_URL}/api/wishlist/${packageId}`, { data: { userId: user.id } });
       showToast('Removed from wishlist', 'success');
       fetchWishlist();
     } catch (error) {

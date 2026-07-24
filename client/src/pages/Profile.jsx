@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function Profile() {
   const { showToast } = useToast();
@@ -17,9 +18,7 @@ function Profile() {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:5000/api/auth/profile/${user.id}`, {
-        name, phone, address
-      });
+      const res = await axios.put(`${API_URL}/api/auth/profile/${user.id}`, { name, phone, address });
       localStorage.setItem('user', JSON.stringify(res.data));
       setUser(res.data);
       showToast('Profile updated!', 'success');
@@ -31,9 +30,7 @@ function Profile() {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/auth/change-password/${user.id}`, {
-        currentPassword, newPassword
-      });
+      await axios.put(`${API_URL}/api/auth/change-password/${user.id}`, { currentPassword, newPassword });
       setPasswordMsg('✅ Password changed successfully!');
       setCurrentPassword('');
       setNewPassword('');

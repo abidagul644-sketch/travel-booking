@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function Dashboard() {
     const fetchPackages = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('http://localhost:5000/api/packages');
+        const res = await axios.get(`${API_URL}/api/packages`);
         setPackages(res.data);
       } catch (error) {
         console.log('Error fetching packages:', error);
@@ -39,7 +40,7 @@ function Dashboard() {
 
     const fetchWishlist = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/wishlist/${user.id}`);
+        const res = await axios.get(`${API_URL}/api/wishlist/${user.id}`);
         setWishlist(res.data.map((item) => item.package._id));
       } catch (error) {
         console.log('Error fetching wishlist:', error);
@@ -51,11 +52,11 @@ function Dashboard() {
   const toggleWishlist = async (pkg) => {
     try {
       if (wishlist.includes(pkg._id)) {
-        await axios.delete(`http://localhost:5000/api/wishlist/${pkg._id}`, { data: { userId: user.id } });
+        await axios.delete(`${API_URL}/api/wishlist/${pkg._id}`, { data: { userId: user.id } });
         setWishlist(wishlist.filter((id) => id !== pkg._id));
         showToast('Removed from wishlist', 'success');
       } else {
-        await axios.post('http://localhost:5000/api/wishlist', { userId: user.id, packageId: pkg._id });
+        await axios.post(`${API_URL}/api/wishlist`, { userId: user.id, packageId: pkg._id });
         setWishlist([...wishlist, pkg._id]);
         showToast('Added to wishlist!', 'success');
       }
@@ -231,19 +232,9 @@ function Dashboard() {
 
                 {totalPages > 1 && (
                   <div className="pagination">
-                    <button
-                      disabled={currentPage === 1}
-                      onClick={() => setCurrentPage(currentPage - 1)}
-                    >
-                      ← Previous
-                    </button>
+                    <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>← Previous</button>
                     <span>Page {currentPage} of {totalPages}</span>
-                    <button
-                      disabled={currentPage === totalPages}
-                      onClick={() => setCurrentPage(currentPage + 1)}
-                    >
-                      Next →
-                    </button>
+                    <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Next →</button>
                   </div>
                 )}
               </>

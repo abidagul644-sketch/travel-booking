@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function AdminDashboard() {
   const { showToast } = useToast();
@@ -12,7 +13,7 @@ function AdminDashboard() {
   const [duration, setDuration] = useState('');
 
   const fetchPackages = async () => {
-    const res = await axios.get('http://localhost:5000/api/packages');
+    const res = await axios.get(`${API_URL}/api/packages`);
     setPackages(res.data);
   };
 
@@ -23,7 +24,7 @@ function AdminDashboard() {
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/packages', { destination, description, price, duration });
+      await axios.post(`${API_URL}/api/packages`, { destination, description, price, duration });
       showToast('Package added!', 'success');
       setDestination(''); setDescription(''); setPrice(''); setDuration('');
       fetchPackages();
@@ -34,7 +35,7 @@ function AdminDashboard() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/packages/${id}`);
+      await axios.delete(`${API_URL}/api/packages/${id}`);
       showToast('Package deleted', 'success');
       fetchPackages();
     } catch (error) {

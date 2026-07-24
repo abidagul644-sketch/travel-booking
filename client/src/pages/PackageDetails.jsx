@@ -2,13 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function PackageDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
-  const { showToast } = useToast();
   const [pkg, setPkg] = useState(null);
   const [allPackages, setAllPackages] = useState([]);
   const [activeImage, setActiveImage] = useState(0);
@@ -16,11 +14,11 @@ function PackageDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/packages/${id}`);
+        const res = await axios.get(`${API_URL}/api/packages/${id}`);
         setPkg(res.data);
         setActiveImage(0);
 
-        const allRes = await axios.get('http://localhost:5000/api/packages');
+        const allRes = await axios.get(`${API_URL}/api/packages`);
         setAllPackages(allRes.data.filter((p) => p._id !== id));
       } catch (error) {
         console.log('Error fetching package:', error);
@@ -36,7 +34,6 @@ function PackageDetails() {
 
   if (!pkg) return <div><Navbar /><p style={{ textAlign: 'center', marginTop: '50px' }}>Loading...</p></div>;
 
-  // 6 gallery images generate karna (alag seeds ke saath)
   const galleryImages = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/400/300?random=${pkg._id}-${i}`);
 
   return (
@@ -69,15 +66,15 @@ function PackageDetails() {
 
         <div className="details-grid">
           <div className="details-main">
-            <h3>About This Trip</h3>
-            <p className="details-description">{pkg.description}</p>
+            <h3>Hotel Information</h3>
+            <div className="hotel-info-card">
+              <h4>🏨 Grand Plaza Hotel</h4>
+              <p className="package-meta">A 3-star hotel located in the heart of {pkg.destination}, offering comfortable rooms and excellent service.</p>
+              <div className="package-rating" style={{ marginTop: '8px' }}>⭐⭐⭐⭐ 4.3 Hotel Rating</div>
+            </div>
 
-            <h3 style={{ marginTop: '25px' }}>Hotel Information</h3>
-<div className="hotel-info-card">
-  <h4>🏨 Grand Plaza Hotel</h4>
-  <p className="package-meta">A 3-star hotel located in the heart of {pkg.destination}, offering comfortable rooms and excellent service.</p>
-  <div className="package-rating" style={{ marginTop: '8px' }}>⭐⭐⭐⭐ 4.3 Hotel Rating</div>
-</div>
+            <h3 style={{ marginTop: '25px' }}>About This Trip</h3>
+            <p className="details-description">{pkg.description}</p>
 
             <h3 style={{ marginTop: '25px' }}>Included Facilities</h3>
             <div className="amenities-grid">

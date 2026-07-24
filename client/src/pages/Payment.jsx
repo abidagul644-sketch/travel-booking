@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function Payment() {
   const { bookingId } = useParams();
@@ -18,7 +19,7 @@ function Payment() {
 
   useEffect(() => {
     const fetchBooking = async () => {
-      const res = await axios.get(`http://localhost:5000/api/bookings/single/${bookingId}`);
+      const res = await axios.get(`${API_URL}/api/bookings/single/${bookingId}`);
       setBooking(res.data);
     };
     fetchBooking();
@@ -30,7 +31,7 @@ function Payment() {
 
     setTimeout(async () => {
       try {
-        await axios.put(`http://localhost:5000/api/bookings/pay/${bookingId}`);
+        await axios.put(`${API_URL}/api/bookings/pay/${bookingId}`);
         setProcessing(false);
         setSuccess(true);
         showToast('Payment successful!', 'success');
@@ -77,14 +78,7 @@ function Payment() {
             </div>
             <div className="form-group">
               <label>Card Number</label>
-              <input
-                type="text"
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
-                required
-                maxLength="19"
-                placeholder="1234 5678 9012 3456"
-              />
+              <input type="text" value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} required maxLength="19" placeholder="1234 5678 9012 3456" />
             </div>
             <div style={{ display: 'flex', gap: '15px' }}>
               <div className="form-group" style={{ flex: 1 }}>

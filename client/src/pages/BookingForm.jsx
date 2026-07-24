@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 
 function BookingForm() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function BookingForm() {
 
   useEffect(() => {
     const fetchPackage = async () => {
-      const res = await axios.get(`http://localhost:5000/api/packages/${id}`);
+      const res = await axios.get(`${API_URL}/api/packages/${id}`);
       setPkg(res.data);
     };
     fetchPackage();
@@ -24,7 +25,7 @@ function BookingForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/bookings', {
+      const res = await axios.post(`${API_URL}/api/bookings`, {
         userId: user.id,
         packageId: pkg._id,
         destination: pkg.destination,
@@ -56,22 +57,11 @@ function BookingForm() {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>📅 Travel Date</label>
-              <input
-                type="date"
-                value={travelDate}
-                onChange={(e) => setTravelDate(e.target.value)}
-                required
-              />
+              <input type="date" value={travelDate} onChange={(e) => setTravelDate(e.target.value)} required />
             </div>
             <div className="form-group">
               <label>👥 Number of Travelers</label>
-              <input
-                type="number"
-                min="1"
-                value={travelers}
-                onChange={(e) => setTravelers(Number(e.target.value))}
-                required
-              />
+              <input type="number" min="1" value={travelers} onChange={(e) => setTravelers(Number(e.target.value))} required />
             </div>
 
             <div className="payment-summary" style={{ marginTop: '15px' }}>
