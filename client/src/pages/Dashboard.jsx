@@ -43,11 +43,13 @@ function Dashboard() {
     const fetchWishlist = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/wishlist/${user.id}`);
-        setWishlist(res.data.map((item) => item.package._id));
+        const validIds = res.data.filter((item) => item.package).map((item) => item.package._id);
+        setWishlist(validIds);
       } catch (error) {
         console.log('Error fetching wishlist:', error);
       }
     };
+    
     fetchWishlist();
   }, []);
 

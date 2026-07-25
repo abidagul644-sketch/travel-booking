@@ -4,7 +4,7 @@ function About() {
   return (
     <div>
       <Navbar />
-      <div className="dashboard-container" style={{ marginTop: '30px', maxWidth: '700px' }}>
+      <div className="dashboard-container" style={{ marginTop: '30px', maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
         <h3 className="section-title">About Us ✈️</h3>
         <div className="profile-card" style={{ textAlign: 'left', padding: '30px' }}>
           <p className="package-meta" style={{ lineHeight: '1.8', fontSize: '15px' }}>

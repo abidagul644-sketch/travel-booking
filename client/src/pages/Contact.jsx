@@ -19,7 +19,7 @@ function Contact() {
   return (
     <div>
       <Navbar />
-      <div className="dashboard-container" style={{ marginTop: '30px', maxWidth: '600px' }}>
+      <div className="dashboard-container" style={{ marginTop: '30px', maxWidth: '650px', marginLeft: 'auto', marginRight: 'auto' }}>
         <h3 className="section-title">Contact Us 📧</h3>
         <div className="admin-form-card">
           <form onSubmit={handleSubmit}>
