@@ -264,9 +264,9 @@ body:has(.auth-container) {
 
 /* DASHBOARD */
 .dashboard-container {
-  max-width: 1400px;
-  margin: 50px auto;
-  padding: 20px 40px;
+  width: 100%;
+  margin: 50px 0 0 0;
+  padding: 0 30px;
 }
 
 .section-title {
