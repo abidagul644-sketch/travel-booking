@@ -985,13 +985,20 @@ body.dark-mode .package-card,
 body.dark-mode .search-bar,
 body.dark-mode .filters-sidebar,
 body.dark-mode .auth-container,
-body.dark-mode .booking-row,
+body.dark-mode .booking-card,
 body.dark-mode .profile-card,
 body.dark-mode .details-sidebar,
 body.dark-mode .review-card,
 body.dark-mode .empty-state,
 body.dark-mode .skeleton-card,
-body.dark-mode .dropdown-menu {
+body.dark-mode .dropdown-menu,
+body.dark-mode .admin-form-card,
+body.dark-mode .admin-table-card,
+body.dark-mode .stat-card,
+body.dark-mode .payment-card,
+body.dark-mode .payment-success,
+body.dark-mode .hotel-info-card,
+body.dark-mode .tour-day {
   background: #1e293b;
   color: #e2e8f0;
 }
@@ -1001,13 +1008,29 @@ body.dark-mode .package-body h4,
 body.dark-mode .section-title,
 body.dark-mode .details-header h1,
 body.dark-mode .details-main h3,
-body.dark-mode .dropdown-header {
+body.dark-mode .dropdown-header,
+body.dark-mode .filters-sidebar h4,
+body.dark-mode .filter-group label,
+body.dark-mode .filter-checkbox span,
+body.dark-mode .admin-form-card h4,
+body.dark-mode .admin-table-card h4,
+body.dark-mode .payment-card h3,
+body.dark-mode .booking-card-top h4,
+body.dark-mode .detail-value,
+body.dark-mode .profile-card h2,
+body.dark-mode .auth-container h2,
+body.dark-mode .search-field label {
   color: #f1f5f9;
 }
 
 body.dark-mode .package-meta,
 body.dark-mode .details-description,
-body.dark-mode .booking-label {
+body.dark-mode .booking-label,
+body.dark-mode .booking-id,
+body.dark-mode .detail-label,
+body.dark-mode .stat-label,
+body.dark-mode .link-text,
+body.dark-mode .form-group label {
   color: #94a3b8;
 }
 
@@ -1017,6 +1040,28 @@ body.dark-mode .search-field input {
   color: white;
   border-color: #334155;
 }
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .search-field input::placeholder {
+  color: #64748b;
+}
+
+body.dark-mode .booking-card-top {
+  border-bottom-color: #334155;
+}
+
+body.dark-mode .payment-summary,
+body.dark-mode .amenity,
+body.dark-mode .tag,
+body.dark-mode .filter-tag {
+  background: #0f172a;
+  color: #c4b5fd;
+}
+
+body.dark-mode .dark-toggle {
+  background: #334155;
+}
+
 /* ADMIN DASHBOARD */
 .admin-stats {
   display: flex;
