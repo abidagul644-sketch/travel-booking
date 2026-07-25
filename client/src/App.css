@@ -112,6 +112,47 @@ body {
   margin-bottom: 25px;
 }
 
+.hero-cta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-hero-primary {
+  padding: 13px 28px;
+  background: white;
+  color: #7C3AED;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-hero-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.btn-hero-secondary {
+  padding: 13px 28px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.05);
+}
+
 /* SEARCH BAR (Booking.com style) */
 .search-bar-wrap {
   display: flex;
@@ -154,34 +195,50 @@ body {
   margin-bottom: 6px;
 }
 
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 15px;
+  pointer-events: none;
+}
+
 .search-field input {
-  padding: 14px 12px;
+  padding: 14px 12px 14px 36px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 14px;
   outline: none;
   min-height: 46px;
+  width: 100%;
 }
 
 .search-field input:focus {
   border-color: #7C3AED;
 }
 
-.btn-search {
-  padding: 12px 28px;
+.btn-search-big {
+  padding: 16px 40px;
   background: linear-gradient(135deg, #7C3AED, #A855F7);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
-  height: 42px;
+  min-height: 46px;
+  box-shadow: 0 5px 15px rgba(124,58,237,0.35);
 }
 
-.btn-search:hover {
-  transform: scale(1.03);
-  box-shadow: 0 5px 15px rgba(124,58,237,0.4);
+.btn-search-big:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(124,58,237,0.5);
 }
 
 /* AUTH FORMS */

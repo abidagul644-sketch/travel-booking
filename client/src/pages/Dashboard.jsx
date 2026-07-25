@@ -100,11 +100,19 @@ function Dashboard() {
     <div>
       <Navbar />
 
-      <div className="hero">
+     <div className="hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1>Explore The World 🌍</h1>
           <p>Book Your Dream Vacation, {user?.name}!</p>
+          <div className="hero-cta">
+            <button className="btn-hero-primary" onClick={() => document.querySelector('.search-bar-wrap').scrollIntoView({ behavior: 'smooth' })}>
+              🧭 Start Your Journey
+            </button>
+            <button className="btn-hero-secondary" onClick={() => document.querySelector('.dashboard-container').scrollIntoView({ behavior: 'smooth' })}>
+              Explore Packages
+            </button>
+          </div>
         </div>
       </div>
 
@@ -112,25 +120,33 @@ function Dashboard() {
         <div className="search-bar">
           <div className="search-field">
             <label>📍 Destination</label>
-            <input type="text" placeholder="Where to?" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <div className="input-with-icon">
+              <span className="input-icon">🌍</span>
+              <input type="text" placeholder="Where to?" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            </div>
           </div>
           <div className="search-field">
             <label>📅 Check In</label>
-            <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
+            <div className="input-with-icon">
+              <span className="input-icon">🗓️</span>
+              <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
+            </div>
           </div>
           <div className="search-field">
             <label>📅 Check Out</label>
-            <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
+            <div className="input-with-icon">
+              <span className="input-icon">🗓️</span>
+              <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
+            </div>
           </div>
           <div className="search-field small">
-            <label>👨 Adults</label>
-            <input type="number" min="1" value={adults} onChange={(e) => setAdults(e.target.value)} />
+            <label>👤 Guests</label>
+            <div className="input-with-icon">
+              <span className="input-icon">👥</span>
+              <input type="number" min="1" value={adults} onChange={(e) => setAdults(e.target.value)} />
+            </div>
           </div>
-          <div className="search-field small">
-            <label>👶 Children</label>
-            <input type="number" min="0" value={children} onChange={(e) => setChildren(e.target.value)} />
-          </div>
-          <button className="btn-search" onClick={handleSearch}>🔍 Search</button>
+          <button className="btn-search-big" onClick={handleSearch}>🔍 Search</button>
         </div>
       </div>
 
