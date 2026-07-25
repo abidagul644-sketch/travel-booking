@@ -21,6 +21,9 @@ function Dashboard() {
   const [wishlist, setWishlist] = useState([]);
   const [maxPrice, setMaxPrice] = useState(100000);
   const [selectedDurations, setSelectedDurations] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [selectedHotelTypes, setSelectedHotelTypes] = useState([]);
+  const [mealsIncluded, setMealsIncluded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -83,14 +86,35 @@ function Dashboard() {
     setCurrentPage(1);
   };
 
-  const filteredPackages = packages.filter((pkg) => {
+  const toggleCountry = (country) => {
+    if (selectedCountries.includes(country)) {
+      setSelectedCountries(selectedCountries.filter((c) => c !== country));
+    } else {
+      setSelectedCountries([...selectedCountries, country]);
+    }
+    setCurrentPage(1);
+  };
+
+  const toggleHotelType = (type) => {
+    if (selectedHotelTypes.includes(type)) {
+      setSelectedHotelTypes(selectedHotelTypes.filter((t) => t !== type));
+    } else {
+      setSelectedHotelTypes([...selectedHotelTypes, type]);
+    }
+    setCurrentPage(1);
+  };
+
+const filteredPackages = packages.filter((pkg) => {
     const matchesSearch = pkg.destination.toLowerCase().includes(activeSearch.toLowerCase());
     const matchesPrice = pkg.price <= maxPrice;
     const matchesDuration = selectedDurations.length === 0 || selectedDurations.includes(pkg.duration);
-    return matchesSearch && matchesPrice && matchesDuration;
+    const country = pkg.destination.split(',').pop().trim();
+    const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(country);
+    return matchesSearch && matchesPrice && matchesDuration && matchesCountry;
   });
 
   const uniqueDurations = [...new Set(packages.map((p) => p.duration))];
+  const uniqueCountries = [...new Set(packages.map((p) => p.destination.split(',').pop().trim()))];
 
   const totalPages = Math.ceil(filteredPackages.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -183,9 +207,45 @@ function Dashboard() {
               ))}
             </div>
 
-            <div className="filter-group">
+    <div className="filter-group">
               <label>Rating</label>
               <div className="filter-checkbox"><input type="checkbox" /> <span>⭐ 4.5 & up</span></div>
+            </div>
+
+            <div className="filter-group">
+              <label>Country</label>
+              {uniqueCountries.map((country) => (
+                <div key={country} className="filter-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={selectedCountries.includes(country)}
+                    onChange={() => toggleCountry(country)}
+                  />
+                  <span>{country}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="filter-group">
+              <label>Hotel Type</label>
+              {['3-Star', '4-Star', '5-Star'].map((type) => (
+                <div key={type} className="filter-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={selectedHotelTypes.includes(type)}
+                    onChange={() => toggleHotelType(type)}
+                  />
+                  <span>{type}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="filter-group">
+              <label>Meals</label>
+              <div className="filter-checkbox">
+                <input type="checkbox" checked={mealsIncluded} onChange={() => setMealsIncluded(!mealsIncluded)} />
+                <span>🍽 Meals Included</span>
+              </div>
             </div>
 
             <div className="filter-group">
