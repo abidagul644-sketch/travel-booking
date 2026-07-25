@@ -35,44 +35,53 @@ function MyBookings() {
       <div className="dashboard-container" style={{ marginTop: '30px' }}>
         <h3 className="section-title">My Bookings 📄</h3>
 
-        {bookings.length === 0 && <p>No bookings yet.</p>}
+        {bookings.length === 0 && (
+          <div className="empty-state">
+            <div className="empty-icon">🧳</div>
+            <h3>No Bookings Yet</h3>
+            <p>Start exploring packages and book your dream vacation!</p>
+          </div>
+        )}
 
-        <div className="bookings-list">
+        <div className="bookings-cards">
           {bookings.map((booking) => (
-            <div key={booking._id} className="booking-row">
-              <div>
-                <p className="booking-label">Booking ID</p>
-                <p className="booking-value">#{booking._id.slice(-6).toUpperCase()}</p>
-              </div>
-              <div>
-                <p className="booking-label">Destination</p>
-                <p className="booking-value">{booking.destination}</p>
-              </div>
-              <div>
-                <p className="booking-label">Travel Date</p>
-                <p className="booking-value">{booking.travelDate || 'N/A'}</p>
-              </div>
-              <div>
-                <p className="booking-label">Guests</p>
-                <p className="booking-value">👥 {booking.travelers || 1}</p>
-              </div>
-              <div>
-                <p className="booking-label">Payment</p>
-                <span className={`status-badge ${booking.paymentStatus === 'Paid' ? 'confirmed' : 'cancelled'}`}>
-                  {booking.paymentStatus}
-                </span>
-              </div>
-              <div>
-                <p className="booking-label">Status</p>
+            <div key={booking._id} className="booking-card">
+              <div className="booking-card-top">
+                <div>
+                  <p className="booking-id">#{booking._id.slice(-6).toUpperCase()}</p>
+                  <h4>{booking.destination}</h4>
+                </div>
                 <span className={`status-badge ${booking.status === 'Cancelled' ? 'cancelled' : 'confirmed'}`}>
                   {booking.status}
                 </span>
               </div>
-              <div>
-                {booking.status !== 'Cancelled' && (
-                  <button className="btn-cancel" onClick={() => handleCancel(booking._id)}>Cancel</button>
-                )}
+
+              <div className="booking-card-details">
+                <div className="booking-detail-item">
+                  <span className="detail-label">📅 Travel Date</span>
+                  <span className="detail-value">{booking.travelDate || 'Not set'}</span>
+                </div>
+                <div className="booking-detail-item">
+                  <span className="detail-label">👥 Guests</span>
+                  <span className="detail-value">{booking.travelers || 1}</span>
+                </div>
+                <div className="booking-detail-item">
+                  <span className="detail-label">💳 Payment</span>
+                  <span className={`status-badge small ${booking.paymentStatus === 'Paid' ? 'confirmed' : 'cancelled'}`}>
+                    {booking.paymentStatus}
+                  </span>
+                </div>
+                <div className="booking-detail-item">
+                  <span className="detail-label">💰 Amount</span>
+                  <span className="detail-value price">Rs {booking.price}</span>
+                </div>
               </div>
+
+              {booking.status !== 'Cancelled' && (
+                <button className="btn-cancel full-width" onClick={() => handleCancel(booking._id)}>
+                  Cancel Booking
+                </button>
+              )}
             </div>
           ))}
         </div>
