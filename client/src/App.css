@@ -23,6 +23,12 @@ body {
   min-height: 100vh;
 }
 
+#root > .toast {
+  display: block !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
 /* NAVBAR */
 .navbar {
   display: flex;
