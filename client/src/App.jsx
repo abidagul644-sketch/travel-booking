@@ -5,6 +5,8 @@ import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import Payment from './pages/Payment';
+import About from './pages/About';
+import Contact from './pages/Contact';
 import BookingForm from './pages/BookingForm';
 import MyBookings from './pages/MyBookings';
 import PackageDetails from './pages/PackageDetails';
@@ -30,6 +32,8 @@ function App() {
           <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
           <Route path="/booking-form/:id" element={<ProtectedRoute><BookingForm /></ProtectedRoute>} />
           <Route path="/payment/:bookingId" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/" element={<Splash />} />
         </Routes>
       </BrowserRouter>

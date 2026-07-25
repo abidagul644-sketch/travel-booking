@@ -340,8 +340,8 @@ body:has(.auth-container) {
   color: #1e293b;
   margin-bottom: 20px;
   margin-top: 10px;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
   text-align: left;
   width: 100%;
 }
@@ -417,7 +417,8 @@ body:has(.auth-container) {
 
 .package-body h4 {
   color: #1e293b;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 700;
   margin-bottom: 4px;
 }
 
@@ -429,8 +430,9 @@ body:has(.auth-container) {
 
 .package-meta {
   color: #64748b;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 4px;
+  line-height: 1.5;
 }
 
 .package-price {
@@ -1428,4 +1430,13 @@ body.dark-mode .filter-tag {
 
 body.dark-mode .dark-toggle {
   background: #334155;
+}
+.notif-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: #dc2626;
+  border-radius: 50%;
 }

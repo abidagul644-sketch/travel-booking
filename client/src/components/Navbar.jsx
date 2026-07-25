@@ -5,6 +5,7 @@ function Navbar() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
 
   useEffect(() => {
@@ -28,14 +29,30 @@ function Navbar() {
       <ul>
         <li onClick={() => navigate('/dashboard')}>Home</li>
         <li onClick={() => navigate('/dashboard')}>Packages</li>
-        <li onClick={() => navigate('/wishlist')}>Wishlist</li>
+        <li onClick={() => navigate('/wishlist')}>Wishlist ❤️</li>
         <li onClick={() => navigate('/bookings')}>My Bookings</li>
-        <li onClick={() => navigate('/admin')}>Admin</li>
+        <li onClick={() => navigate('/about')}>About</li>
+        <li onClick={() => navigate('/contact')}>Contact</li>
       </ul>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
         <div className="dark-toggle" onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? '☀️' : '🌙'}
+        </div>
+
+        <div className="profile-dropdown-wrap">
+          <div className="dark-toggle" onClick={() => setNotifOpen(!notifOpen)} style={{ position: 'relative' }}>
+            🔔
+            <span className="notif-dot"></span>
+          </div>
+          {notifOpen && (
+            <div className="dropdown-menu">
+              <p className="dropdown-header">Notifications</p>
+              <div className="dropdown-item">🎉 Welcome to TravelEase!</div>
+              <div className="dropdown-item">💰 Special offer: 10% off on Dubai packages</div>
+              <div className="dropdown-item">📦 New packages added this week</div>
+            </div>
+          )}
         </div>
 
         {user ? (
