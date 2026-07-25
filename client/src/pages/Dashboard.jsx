@@ -16,7 +16,6 @@ function Dashboard() {
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
   const [activeSearch, setActiveSearch] = useState('');
   const [wishlist, setWishlist] = useState([]);
   const [maxPrice, setMaxPrice] = useState(100000);
@@ -104,7 +103,7 @@ function Dashboard() {
     setCurrentPage(1);
   };
 
-const filteredPackages = packages.filter((pkg) => {
+  const filteredPackages = packages.filter((pkg) => {
     const matchesSearch = pkg.destination.toLowerCase().includes(activeSearch.toLowerCase());
     const matchesPrice = pkg.price <= maxPrice;
     const matchesDuration = selectedDurations.length === 0 || selectedDurations.includes(pkg.duration);
@@ -124,7 +123,7 @@ const filteredPackages = packages.filter((pkg) => {
     <div>
       <Navbar />
 
-     <div className="hero">
+      <div className="hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1>Explore The World 🌍</h1>
@@ -207,7 +206,7 @@ const filteredPackages = packages.filter((pkg) => {
               ))}
             </div>
 
-    <div className="filter-group">
+            <div className="filter-group">
               <label>Rating</label>
               <div className="filter-checkbox"><input type="checkbox" /> <span>⭐ 4.5 & up</span></div>
             </div>
@@ -270,7 +269,7 @@ const filteredPackages = packages.filter((pkg) => {
                     <div className="skeleton-line" style={{ width: '50%' }}></div>
                     <div className="skeleton-line" style={{ width: '40%' }}></div>
                   </div>
-                ))}<img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(pkg.destination.split(',')[0])},landmark`} alt={pkg.destination} loading="lazy" />
+                ))}
               </div>
             ) : paginatedPackages.length === 0 ? (
               <div className="empty-state">
@@ -284,7 +283,7 @@ const filteredPackages = packages.filter((pkg) => {
                   {paginatedPackages.map((pkg) => (
                     <div key={pkg._id} className="package-card">
                       <div className="package-image-wrap">
-                        
+                        <img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(pkg.destination.split(',')[0])},landmark`} alt={pkg.destination} loading="lazy" />
                       </div>
                       <div className="wishlist-heart" onClick={() => toggleWishlist(pkg)}>
                         {isWishlisted(pkg._id) ? '❤️' : '🤍'}
