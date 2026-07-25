@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { API_URL } from '../config';
+import { getDestinationImage } from '../utils/images';
 
 function PackageDetails() {
   const { id } = useParams();
@@ -34,7 +35,7 @@ function PackageDetails() {
 
   if (!pkg) return <div><Navbar /><p style={{ textAlign: 'center', marginTop: '50px' }}>Loading...</p></div>;
 
-  const galleryImages = Array.from({ length: 6 }, (_, i) => `https://source.unsplash.com/400x300/?travel,${encodeURIComponent(pkg.destination.split(',')[0])},${i}`);
+  const galleryImages = Array.from({ length: 6 }, () => getDestinationImage(pkg.destination));
 
   return (
     <div>
@@ -149,7 +150,7 @@ function PackageDetails() {
               {allPackages.slice(0, 3).map((p) => (
                 <div key={p._id} className="package-card">
                   <div className="package-image-wrap">
-                    <img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(p.destination.split(',')[0])}`} alt={p.destination} loading="lazy" />
+                  <img src={getDestinationImage(p.destination)} alt={p.destination} loading="lazy" />
                   </div>
                   <div className="package-body">
                     <h4>{p.destination}</h4>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
 import { API_URL } from '../config';
+import { getDestinationImage } from '../utils/images';
 
 function Wishlist() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function Wishlist() {
             item.package && (
               <div key={item._id} className="package-card">
                 <div className="package-image-wrap">
-                  <img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(item.package.destination.split(',')[0])}`} alt={item.package.destination} loading="lazy" />
+                  <img src={getDestinationImage(item.package.destination)} alt={item.package.destination} loading="lazy" />
                 </div>
                 <div className="wishlist-heart" onClick={() => removeFromWishlist(item.package._id)}>❤️</div>
                 <div className="package-body">

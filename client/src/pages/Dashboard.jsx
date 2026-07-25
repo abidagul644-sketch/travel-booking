@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useToast } from '../context/ToastContext';
 import { API_URL } from '../config';
+import { getDestinationImage } from '../utils/images';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -285,7 +286,7 @@ function Dashboard() {
                   {paginatedPackages.map((pkg) => (
                     <div key={pkg._id} className="package-card">
                       <div className="package-image-wrap">
-                        <img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(pkg.destination.split(',')[0])},landmark`} alt={pkg.destination} loading="lazy" />
+                        <img src={getDestinationImage(pkg.destination)} alt={pkg.destination} loading="lazy" />
                       </div>
                       <div className="wishlist-heart" onClick={() => toggleWishlist(pkg)}>
                         {isWishlisted(pkg._id) ? '❤️' : '🤍'}
