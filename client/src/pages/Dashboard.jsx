@@ -270,7 +270,7 @@ const filteredPackages = packages.filter((pkg) => {
                     <div className="skeleton-line" style={{ width: '50%' }}></div>
                     <div className="skeleton-line" style={{ width: '40%' }}></div>
                   </div>
-                ))}
+                ))}<img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(pkg.destination.split(',')[0])},landmark`} alt={pkg.destination} loading="lazy" />
               </div>
             ) : paginatedPackages.length === 0 ? (
               <div className="empty-state">
@@ -284,7 +284,7 @@ const filteredPackages = packages.filter((pkg) => {
                   {paginatedPackages.map((pkg) => (
                     <div key={pkg._id} className="package-card">
                       <div className="package-image-wrap">
-                        <img src={`https://picsum.photos/400/300?random=${pkg._id}`} alt={pkg.destination} />
+                        
                       </div>
                       <div className="wishlist-heart" onClick={() => toggleWishlist(pkg)}>
                         {isWishlisted(pkg._id) ? '❤️' : '🤍'}
@@ -300,7 +300,10 @@ const filteredPackages = packages.filter((pkg) => {
                           <span className="tag">🚗 Free Pickup</span>
                         </div>
                         <p className="package-price">Rs {pkg.price}</p>
-                        <button className="btn-book" onClick={() => navigate(`/package/${pkg._id}`)}>View Details</button>
+                        <div className="card-btn-group">
+                          <button className="btn-outline" onClick={() => navigate(`/package/${pkg._id}`)}>View Details</button>
+                          <button className="btn-book" onClick={() => navigate(`/package/${pkg._id}`)}>Book Now</button>
+                        </div>
                       </div>
                     </div>
                   ))}

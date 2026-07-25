@@ -34,7 +34,7 @@ function PackageDetails() {
 
   if (!pkg) return <div><Navbar /><p style={{ textAlign: 'center', marginTop: '50px' }}>Loading...</p></div>;
 
-  const galleryImages = Array.from({ length: 6 }, (_, i) => `https://picsum.photos/400/300?random=${pkg._id}-${i}`);
+  const galleryImages = Array.from({ length: 6 }, (_, i) => `https://source.unsplash.com/400x300/?travel,${encodeURIComponent(pkg.destination.split(',')[0])},${i}`);
 
   return (
     <div>
@@ -149,7 +149,7 @@ function PackageDetails() {
               {allPackages.slice(0, 3).map((p) => (
                 <div key={p._id} className="package-card">
                   <div className="package-image-wrap">
-                    <img src={`https://picsum.photos/400/300?random=${p._id}`} alt={p.destination} />
+                    <img src={`https://source.unsplash.com/400x300/?travel,${encodeURIComponent(p.destination.split(',')[0])}`} alt={p.destination} loading="lazy" />
                   </div>
                   <div className="package-body">
                     <h4>{p.destination}</h4>
