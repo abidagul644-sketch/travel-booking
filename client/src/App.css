@@ -160,7 +160,7 @@ body {
   margin-top: -35px;
   position: relative;
   z-index: 10;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .search-bar {
@@ -172,7 +172,7 @@ body {
   flex-wrap: wrap;
   gap: 18px;
   align-items: flex-end;
-  max-width: 1100px;
+  max-width: 1600px;
   width: 100%;
 }
 
@@ -521,9 +521,9 @@ body:has(.auth-container) {
 }
 
 .details-container {
-  max-width: 1100px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 30px 30px;
 }
 
 .btn-back {
@@ -606,8 +606,8 @@ body:has(.auth-container) {
 .gallery-thumbs {
   display: flex;
   gap: 10px;
-  padding: 15px 20px;
-  max-width: 1100px;
+  padding: 15px 30px;
+  max-width: 1600px;
   margin: 0 auto;
   overflow-x: auto;
 }
