@@ -24,6 +24,9 @@ app.use('/api/bookings', bookingRoutes);
 const wishlistRoutes = require('./routes/wishlistRoutes');
 app.use('/api/wishlist', wishlistRoutes);
 
+const contactRoutes = require('./routes/contactRoutes');
+app.use('/api/contacts', contactRoutes);
+
 app.get('/', (req, res) => {
   res.send('Travel Booking Server is running!');
 });
