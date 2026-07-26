@@ -141,6 +141,20 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      <div className="popular-destinations">
+        <span className="popular-label">Popular:</span>
+        {['Goa', 'Dubai', 'Murree', 'Turkey', 'Karachi'].map((place) => (
+          <span
+            key={place}
+            className="destination-chip"
+            onClick={() => { setSearchTerm(place); setActiveSearch(place); }}
+          >
+            {place}
+          </span>
+        ))}
+      </div>
+
+      <div className="search-bar-wrap"></div>
 
       <div className="search-bar-wrap">
         <div className="search-bar">
@@ -175,6 +189,32 @@ function Dashboard() {
           <button className="btn-search-big" onClick={handleSearch}>🔍 Search</button>
         </div>
       </div>
+      <div className="trust-section">
+        <div className="trust-item">
+          <div className="trust-icon">💳</div>
+          <div>
+            <h4>Book Now, Pay Later</h4>
+            <p>Reserve your trip today, pay when you're ready</p>
+          </div>
+        </div>
+        <div className="trust-item">
+          <div className="trust-icon">🔄</div>
+          <div>
+            <h4>Free Cancellation</h4>
+            <p>Plans change? Cancel most bookings for free</p>
+          </div>
+        </div>
+        <div className="trust-item">
+          <div className="trust-icon">⭐</div>
+          <div>
+            <h4>Trusted by Travellers</h4>
+            <p>Thousands of happy customers worldwide</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="dashboard-container">
+        <h3 className="section-title">Available Travel Packages</h3>
 
       <div className="dashboard-container">
         <h3 className="section-title">Available Travel Packages</h3>
