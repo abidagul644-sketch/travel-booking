@@ -1962,6 +1962,11 @@ body.dark-mode .dark-toggle {
 .admin-layout {
   display: flex;
   min-height: 100vh;
+  width: 100%;
+}
+
+#root > .admin-layout {
+  min-height: 100vh;
 }
 
 .admin-sidebar {
