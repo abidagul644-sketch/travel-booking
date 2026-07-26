@@ -72,10 +72,13 @@ function Dashboard() {
 
   const isWishlisted = (id) => wishlist.includes(id);
 
-  const handleSearch = () => {
+ const handleSearch = () => {
     setLoading(true);
     setActiveSearch(searchTerm);
     setCurrentPage(1);
+    if (tripType === 'business') {
+      showToast('Showing business-friendly packages', 'success');
+    }
     setTimeout(() => setLoading(false), 500);
   };
 
@@ -112,7 +115,8 @@ function Dashboard() {
     const matchesDuration = selectedDurations.length === 0 || selectedDurations.includes(pkg.duration);
     const country = pkg.destination.split(',').pop().trim();
     const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(country);
-    return matchesSearch && matchesPrice && matchesDuration && matchesCountry;
+    const matchesTripType = tripType === 'leisure' || pkg.price >= 20000;
+    return matchesSearch && matchesPrice && matchesDuration && matchesCountry && matchesTripType;
   });
 
   const uniqueDurations = [...new Set(packages.map((p) => p.duration))];

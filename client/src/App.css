@@ -1958,3 +1958,77 @@ body.dark-mode .dark-toggle {
     grid-template-columns: 1fr;
   }
 }
+/* ADMIN SIDEBAR LAYOUT */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: white;
+  padding: 25px 18px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: #A855F7;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-nav-item {
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #cbd5e1;
+  transition: 0.2s;
+}
+
+.admin-nav-item:hover {
+  background: #334155;
+  color: white;
+}
+
+.admin-nav-item.active {
+  background: #7C3AED;
+  color: white;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 35px 40px;
+  background: #F8FAFC;
+}
+
+@media (max-width: 800px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .admin-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

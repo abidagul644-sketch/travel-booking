@@ -33,6 +33,7 @@ function Navbar() {
         <li onClick={() => navigate('/bookings')}>My Bookings</li>
         <li onClick={() => navigate('/about')}>About</li>
         <li onClick={() => navigate('/contact')}>Contact</li>
+        <li onClick={() => navigate('/admin')}>Admin</li>
       </ul>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
