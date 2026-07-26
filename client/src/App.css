@@ -1599,3 +1599,91 @@ body.dark-mode .dark-toggle {
     grid-template-columns: 1fr;
   }
 }
+/* TRIP TYPE TOGGLE */
+.trip-type-toggle {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.trip-type-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: 0.2s;
+}
+
+.trip-type-toggle label.active {
+  opacity: 1;
+}
+
+.trip-type-toggle input {
+  accent-color: white;
+}
+
+/* OFFER BANNER */
+.offer-banner {
+  max-width: 1600px;
+  margin: 40px auto 0;
+  padding: 0 30px;
+}
+
+.offer-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+  border-radius: 16px;
+  padding: 20px 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.offer-banner h4 {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.offer-banner p {
+  color: rgba(255,255,255,0.9);
+  font-size: 13px;
+}
+
+.btn-offer {
+  padding: 10px 24px;
+  background: white;
+  color: #F59E0B;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-offer:hover {
+  transform: scale(1.05);
+}
+
+/* WIDER FOOTER GRID */
+.footer-grid-wide {
+  grid-template-columns: 1.5fr repeat(5, 1fr) !important;
+}
+
+@media (max-width: 1000px) {
+  .footer-grid-wide {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid-wide {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

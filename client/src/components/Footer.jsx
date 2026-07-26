@@ -30,7 +30,7 @@ function Footer() {
         </form>
       </div>
 
-      <div className="footer-grid">
+      <div className="footer-grid footer-grid-wide">
         <div className="footer-col">
           <h4>✈️ TravelEase</h4>
           <p style={{ cursor: 'default' }}>Making your dream vacations a reality since 2026.</p>
@@ -42,17 +42,31 @@ function Footer() {
           </div>
         </div>
         <div className="footer-col">
-          <h4>Quick Links</h4>
-          <p>Home</p>
-          <p>Packages</p>
-          <p>About</p>
-          <p>Contact</p>
+          <h4>Support</h4>
+          <p>Manage Your Trips</p>
+          <p>Contact Support</p>
+          <p>Safety Resource Centre</p>
+          <p>FAQ</p>
+        </div>
+        <div className="footer-col">
+          <h4>Discover</h4>
+          <p>Travel Articles</p>
+          <p>Seasonal Deals</p>
+          <p>Loyalty Programme</p>
+          <p>Travel Guides</p>
+        </div>
+        <div className="footer-col">
+          <h4>Company</h4>
+          <p>About Us</p>
+          <p>Careers</p>
+          <p>Press Centre</p>
+          <p>Corporate Contact</p>
         </div>
         <div className="footer-col">
           <h4>Legal</h4>
           <p>Privacy Policy</p>
           <p>Terms & Conditions</p>
-          <p>FAQ</p>
+          <p>Accessibility Statement</p>
         </div>
         <div className="footer-col">
           <h4>Get in Touch</h4>

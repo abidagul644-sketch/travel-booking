@@ -17,6 +17,7 @@ function Dashboard() {
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [adults, setAdults] = useState(1);
+  const [tripType, setTripType] = useState('leisure');
   const [activeSearch, setActiveSearch] = useState('');
   const [wishlist, setWishlist] = useState([]);
   const [maxPrice, setMaxPrice] = useState(100000);
@@ -50,7 +51,6 @@ function Dashboard() {
         console.log('Error fetching wishlist:', error);
       }
     };
-    
     fetchWishlist();
   }, []);
 
@@ -141,6 +141,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
+
       <div className="popular-destinations">
         <span className="popular-label">Popular:</span>
         {['Goa', 'Dubai', 'Murree', 'Turkey', 'Karachi'].map((place) => (
@@ -153,8 +154,6 @@ function Dashboard() {
           </span>
         ))}
       </div>
-
-      <div className="search-bar-wrap"></div>
 
       <div className="search-bar-wrap">
         <div className="search-bar">
@@ -186,9 +185,31 @@ function Dashboard() {
               <input type="number" min="1" value={adults} onChange={(e) => setAdults(e.target.value)} />
             </div>
           </div>
-          <button className="btn-search-big" onClick={handleSearch}>🔍 Search</button>
+         <button className="btn-search-big" onClick={handleSearch}>🔍 Search</button>
+        </div>
+        <div className="trip-type-toggle">
+          <label className={tripType === 'leisure' ? 'active' : ''}>
+            <input type="radio" checked={tripType === 'leisure'} onChange={() => setTripType('leisure')} />
+            🏖 Leisure Trip
+          </label>
+          <label className={tripType === 'business' ? 'active' : ''}>
+            <input type="radio" checked={tripType === 'business'} onChange={() => setTripType('business')} />
+            💼 Business Trip
+          </label>
         </div>
       </div>
+      <div className="offer-banner">
+        <div>
+          <h4>🎉 Special Offer</h4>
+          <p>Get up to 15% off on select packages — limited time only!</p>
+        </div>
+        <button className="btn-offer" onClick={() => document.querySelector('.dashboard-container').scrollIntoView({ behavior: 'smooth' })}>
+          View Deals
+        </button>
+      </div>
+
+      <div className="trust-section"></div>
+
       <div className="trust-section">
         <div className="trust-item">
           <div className="trust-icon">💳</div>
@@ -212,9 +233,6 @@ function Dashboard() {
           </div>
         </div>
       </div>
-
-      <div className="dashboard-container">
-        <h3 className="section-title">Available Travel Packages</h3>
 
       <div className="dashboard-container">
         <h3 className="section-title">Available Travel Packages</h3>
