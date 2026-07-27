@@ -2,13 +2,15 @@ const Booking = require('../models/Booking');
 
 const createBooking = async (req, res) => {
   try {
-    const { userId, packageId, destination, price, duration } = req.body;
+    const { userId, packageId, destination, price, duration, travelDate, travelers } = req.body;
     const booking = await Booking.create({
       user: userId,
       package: packageId,
       destination,
       price,
       duration,
+      travelDate,
+      travelers,
       status: 'Pending',
       paymentStatus: 'Unpaid'
     });
@@ -58,4 +60,13 @@ const getBookingById = async (req, res) => {
   }
 };
 
-module.exports = { createBooking, getUserBookings, cancelBooking, payForBooking, getBookingById };
+const getAllBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find().populate('user', 'name email').sort({ createdAt: -1 });
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createBooking, getUserBookings, cancelBooking, payForBooking, getBookingById, getAllBookings };

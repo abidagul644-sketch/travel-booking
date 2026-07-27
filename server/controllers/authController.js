@@ -105,5 +105,13 @@ const getAllUsers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'User deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-module.exports = { createBooking, getUserBookings, cancelBooking, payForBooking, getBookingById, getAllBookings };
+module.exports = { registerUser, loginUser, updateProfile, changePassword, resetPassword, getAllUsers, deleteUser };
