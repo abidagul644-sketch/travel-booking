@@ -2037,3 +2037,9 @@ body.dark-mode .dark-toggle {
     flex-wrap: wrap;
   }
 }
+/* ADMIN LAYOUT OVERRIDE FIX */
+#root > .admin-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: 100vh !important;
+}
