@@ -2102,3 +2102,163 @@ body.dark-mode .dark-toggle {
     grid-template-columns: 1fr;
   }
 }
+/* BOOKING FLOW (Steps + Card) */
+.booking-flow-container {
+  max-width: 550px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.booking-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.booking-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.booking-step.active .step-circle {
+  background: #7C3AED;
+  color: white;
+}
+
+.booking-step.done .step-circle {
+  background: #16a34a;
+  color: white;
+}
+
+.booking-step span {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.booking-step.active span, .booking-step.done span {
+  color: #1e293b;
+}
+
+.step-line {
+  width: 50px;
+  height: 2px;
+  background: #e2e8f0;
+  margin: 0 8px;
+  margin-bottom: 22px;
+}
+
+.step-line.done {
+  background: #16a34a;
+}
+
+.booking-flow-card {
+  background: white;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.booking-pkg-preview {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.booking-pkg-preview img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.booking-pkg-preview h3 {
+  color: #1e293b;
+  font-size: 17px;
+  margin-bottom: 3px;
+}
+
+.price-breakdown {
+  background: #F8FAFC;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 15px 0;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.price-row.total {
+  border-top: 1px dashed #cbd5e1;
+  padding-top: 10px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #7C3AED;
+}
+
+/* CARD PREVIEW */
+.card-preview {
+  background: linear-gradient(135deg, #7C3AED, #4c1d95);
+  border-radius: 16px;
+  padding: 22px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.card-preview-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card-preview-number {
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+  font-family: 'Courier New', monospace;
+}
+
+.card-preview-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-preview-label {
+  font-size: 10px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.card-preview-bottom p {
+  font-size: 13px;
+  font-weight: 600;
+}

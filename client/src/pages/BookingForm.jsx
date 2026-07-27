@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { useToast } from '../context/ToastContext';
 import { API_URL } from '../config';
+import { getDestinationImage } from '../utils/images';
 
 function BookingForm() {
   const { id } = useParams();
@@ -45,31 +46,66 @@ function BookingForm() {
   return (
     <div>
       <Navbar />
-      <div className="payment-container">
-        <div className="payment-card">
-          <h3>Complete Your Booking</h3>
-          <div className="payment-summary">
-            <p><strong>{pkg.destination}</strong></p>
-            <p className="package-meta">{pkg.duration}</p>
-            <p className="package-price">Rs {pkg.price} / person</p>
+      <div className="booking-flow-container">
+        <div className="booking-steps">
+          <div className="booking-step active">
+            <div className="step-circle">1</div>
+            <span>Trip Details</span>
+          </div>
+          <div className="step-line"></div>
+          <div className="booking-step">
+            <div className="step-circle">2</div>
+            <span>Payment</span>
+          </div>
+          <div className="step-line"></div>
+          <div className="booking-step">
+            <div className="step-circle">3</div>
+            <span>Confirmed</span>
+          </div>
+        </div>
+
+        <div className="booking-flow-card">
+          <div className="booking-pkg-preview">
+            <img src={getDestinationImage(pkg.destination)} alt={pkg.destination} />
+            <div>
+              <h3>{pkg.destination}</h3>
+              <p className="package-meta">🕒 {pkg.duration}</p>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>📅 Travel Date</label>
-              <input type="date" value={travelDate} onChange={(e) => setTravelDate(e.target.value)} required />
+              <input
+                type="date"
+                value={travelDate}
+                onChange={(e) => setTravelDate(e.target.value)}
+                required
+              />
             </div>
             <div className="form-group">
               <label>👥 Number of Travelers</label>
-              <input type="number" min="1" value={travelers} onChange={(e) => setTravelers(Number(e.target.value))} required />
+              <input
+                type="number"
+                min="1"
+                value={travelers}
+                onChange={(e) => setTravelers(Number(e.target.value))}
+                required
+              />
             </div>
 
-            <div className="payment-summary" style={{ marginTop: '15px' }}>
-              <p className="package-meta">Total Amount</p>
-              <p className="package-price">Rs {pkg.price * travelers}</p>
+            <div className="price-breakdown">
+              <div className="price-row">
+                <span>Rs {pkg.price} × {travelers} traveler{travelers > 1 ? 's' : ''}</span>
+                <span>Rs {pkg.price * travelers}</span>
+              </div>
+              <div className="price-row total">
+                <span>Total Amount</span>
+                <span>Rs {pkg.price * travelers}</span>
+              </div>
             </div>
 
-            <button type="submit" className="btn-primary">Continue to Payment</button>
+            <button type="submit" className="btn-primary">Continue to Payment →</button>
           </form>
         </div>
       </div>
