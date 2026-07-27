@@ -67,7 +67,34 @@ function AdminDashboard() {
     }
   };
 
-  const revenue = bookings.filter((b) => b.paymentStatus === 'Paid').reduce((sum, b) => sum + Number(b.price), 0);
+  const handleDeleteUser = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/api/auth/users/${id}`);
+      showToast('User deleted', 'success');
+      fetchAll();
+    } catch (error) {
+      showToast('Failed to delete user', 'error');
+    }
+  };
+
+  const paidBookings = bookings.filter((b) => b.paymentStatus === 'Paid');
+  const revenue = paidBookings.reduce((sum, b) => sum + Number(b.price), 0);
+
+  // Monthly revenue breakdown (last 6 months) for simple CSS bar chart
+  const monthlyData = {};
+  paidBookings.forEach((b) => {
+    const month = new Date(b.createdAt).toLocaleString('default', { month: 'short' });
+    monthlyData[month] = (monthlyData[month] || 0) + Number(b.price);
+  });
+  const maxMonthly = Math.max(...Object.values(monthlyData), 1);
+
+  // Popular destinations breakdown
+  const destCount = {};
+  bookings.forEach((b) => {
+    destCount[b.destination] = (destCount[b.destination] || 0) + 1;
+  });
+  const topDestinations = Object.entries(destCount).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const maxDestCount = Math.max(...topDestinations.map((d) => d[1]), 1);
 
   return (
     <div className="admin-layout">
@@ -78,6 +105,9 @@ function AdminDashboard() {
           <div className={`admin-nav-item ${activeTab === 'packages' ? 'active' : ''}`} onClick={() => setActiveTab('packages')}>📦 Packages</div>
           <div className={`admin-nav-item ${activeTab === 'bookings' ? 'active' : ''}`} onClick={() => setActiveTab('bookings')}>📅 Bookings</div>
           <div className={`admin-nav-item ${activeTab === 'users' ? 'active' : ''}`} onClick={() => setActiveTab('users')}>👥 Users</div>
+          <div className={`admin-nav-item ${activeTab === 'payments' ? 'active' : ''}`} onClick={() => setActiveTab('payments')}>💳 Payments</div>
+          <div className={`admin-nav-item ${activeTab === 'reports' ? 'active' : ''}`} onClick={() => setActiveTab('reports')}>📈 Reports</div>
+          <div className={`admin-nav-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>⚙️ Settings</div>
         </nav>
         <div className="admin-nav-item" style={{ marginTop: 'auto', color: '#f87171' }} onClick={() => navigate('/dashboard')}>← Back to Site</div>
       </aside>
@@ -105,7 +135,41 @@ function AdminDashboard() {
               </div>
             </div>
 
-            <div className="admin-table-card" style={{ marginTop: '25px' }}>
+            <div className="admin-charts-grid">
+              <div className="admin-table-card">
+                <h4>📊 Monthly Revenue</h4>
+                <div className="bar-chart">
+                  {Object.entries(monthlyData).length === 0 && <p className="package-meta">No revenue data yet.</p>}
+                  {Object.entries(monthlyData).map(([month, amount]) => (
+                    <div key={month} className="bar-row">
+                      <span className="bar-label">{month}</span>
+                      <div className="bar-track">
+                        <div className="bar-fill" style={{ width: `${(amount / maxMonthly) * 100}%` }}></div>
+                      </div>
+                      <span className="bar-value">Rs {amount.toLocaleString()}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="admin-table-card">
+                <h4>🌍 Popular Destinations</h4>
+                <div className="bar-chart">
+                  {topDestinations.length === 0 && <p className="package-meta">No bookings yet.</p>}
+                  {topDestinations.map(([dest, count]) => (
+                    <div key={dest} className="bar-row">
+                      <span className="bar-label" style={{ minWidth: '110px' }}>{dest}</span>
+                      <div className="bar-track">
+                        <div className="bar-fill orange" style={{ width: `${(count / maxDestCount) * 100}%` }}></div>
+                      </div>
+                      <span className="bar-value">{count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="admin-table-card" style={{ marginTop: '20px' }}>
               <h4>Recent Bookings</h4>
               {bookings.slice(0, 5).map((b) => (
                 <div key={b._id} className="admin-package-row">
@@ -199,9 +263,104 @@ function AdminDashboard() {
                     <strong>{u.name}</strong>
                     <p className="package-meta">{u.email} · Joined {new Date(u.createdAt).toLocaleDateString()}</p>
                   </div>
-                  <span className="status-badge confirmed">Active</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span className="status-badge confirmed">Active</span>
+                    <button className="btn-cancel" onClick={() => handleDeleteUser(u._id)}>🗑️ Delete</button>
+                  </div>
                 </div>
               ))}
+            </div>
+          </>
+        )}
+
+        {activeTab === 'payments' && (
+          <>
+            <h2 className="section-title">Payments</h2>
+            <div className="admin-stats">
+              <div className="stat-card">
+                <p className="stat-number">{paidBookings.length}</p>
+                <p className="stat-label">✅ Successful</p>
+              </div>
+              <div className="stat-card">
+                <p className="stat-number">{bookings.length - paidBookings.length}</p>
+                <p className="stat-label">⏳ Unpaid</p>
+              </div>
+              <div className="stat-card">
+                <p className="stat-number">Rs {revenue.toLocaleString()}</p>
+                <p className="stat-label">💰 Total Collected</p>
+              </div>
+            </div>
+            <div className="admin-table-card" style={{ marginTop: '20px' }}>
+              <h4>Transaction History</h4>
+              {bookings.length === 0 && <p className="package-meta">No transactions yet.</p>}
+              {bookings.map((b) => (
+                <div key={b._id} className="admin-package-row">
+                  <div className="admin-package-info">
+                    <strong>#{b._id.slice(-6).toUpperCase()}</strong>
+                    <p className="package-meta">{b.user?.name || 'Unknown'} · {b.destination} · {new Date(b.createdAt).toLocaleDateString()}</p>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <strong style={{ color: '#7C3AED' }}>Rs {b.price}</strong>
+                    <span className={`status-badge ${b.paymentStatus === 'Paid' ? 'confirmed' : 'cancelled'}`}>{b.paymentStatus}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {activeTab === 'reports' && (
+          <>
+            <h2 className="section-title">Reports</h2>
+            <div className="admin-stats">
+              <div className="stat-card">
+                <p className="stat-number">{bookings.filter((b) => b.status === 'Confirmed').length}</p>
+                <p className="stat-label">✅ Confirmed</p>
+              </div>
+              <div className="stat-card">
+                <p className="stat-number">{bookings.filter((b) => b.status === 'Pending').length}</p>
+                <p className="stat-label">⏳ Pending</p>
+              </div>
+              <div className="stat-card">
+                <p className="stat-number">{bookings.filter((b) => b.status === 'Cancelled').length}</p>
+                <p className="stat-label">❌ Cancelled</p>
+              </div>
+              <div className="stat-card">
+                <p className="stat-number">Rs {bookings.length ? Math.round(revenue / (paidBookings.length || 1)).toLocaleString() : 0}</p>
+                <p className="stat-label">📊 Avg. Booking Value</p>
+              </div>
+            </div>
+            <div className="admin-table-card" style={{ marginTop: '20px' }}>
+              <h4>🌍 Bookings by Destination</h4>
+              <div className="bar-chart">
+                {topDestinations.map(([dest, count]) => (
+                  <div key={dest} className="bar-row">
+                    <span className="bar-label" style={{ minWidth: '110px' }}>{dest}</span>
+                    <div className="bar-track">
+                      <div className="bar-fill" style={{ width: `${(count / maxDestCount) * 100}%` }}></div>
+                    </div>
+                    <span className="bar-value">{count} bookings</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === 'settings' && (
+          <>
+            <h2 className="section-title">Settings</h2>
+            <div className="admin-form-card" style={{ maxWidth: '500px' }}>
+              <h4>Site Information</h4>
+              <div className="form-group">
+                <label>Site Name</label>
+                <input type="text" defaultValue="TravelEase" disabled style={{ background: '#f1f5f9' }} />
+              </div>
+              <div className="form-group">
+                <label>Support Email</label>
+                <input type="text" defaultValue="support@travelease.com" disabled style={{ background: '#f1f5f9' }} />
+              </div>
+              <p className="package-meta">Site settings are managed by the development team. Contact support to request changes.</p>
             </div>
           </>
         )}
