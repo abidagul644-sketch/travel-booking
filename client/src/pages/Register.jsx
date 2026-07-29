@@ -23,40 +23,52 @@ function Register() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-logo">✈️ TravelEase</div>
-      <h2>Create Account</h2>
-      <p className="auth-subtitle">Join us and start planning your dream vacation</p>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Your full name" />
+    <div className="split-auth">
+      <div className="split-auth-image">
+        <div className="split-auth-overlay"></div>
+        <div className="split-auth-content">
+          <div className="auth-logo-white">✈️ TravelEase</div>
+          <h2>Start Your Journey Today</h2>
+          <p>Join thousands of travellers booking their dream vacations with us.</p>
         </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" />
+      </div>
+
+      <div className="split-auth-form">
+        <div className="split-auth-form-inner">
+          <h2>Create Account</h2>
+          <p className="auth-subtitle">Join us and start planning your dream vacation</p>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Name</label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Your full name" />
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <div className="password-input-wrap">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Create a password"
+                />
+                <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? '🙈' : '👁️'}
+                </span>
+              </div>
+            </div>
+            <button type="submit" className="btn-primary">Register</button>
+            {message && <p className="error-msg" style={{ color: '#7C3AED' }}>{message}</p>}
+          </form>
+          <p className="link-text">
+            Already have an account? <Link to="/login">Login here</Link>
+          </p>
         </div>
-        <div className="form-group">
-          <label>Password</label>
-          <div className="password-input-wrap">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Create a password"
-            />
-            <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? '🙈' : '👁️'}
-            </span>
-          </div>
-        </div>
-        <button type="submit" className="btn-primary">Register</button>
-        {message && <p className="error-msg" style={{ color: '#7C3AED' }}>{message}</p>}
-      </form>
-      <p className="link-text">
-        Already have an account? <Link to="/login">Login here</Link>
-      </p>
+      </div>
     </div>
   );
 }
