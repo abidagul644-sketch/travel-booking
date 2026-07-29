@@ -7,6 +7,7 @@ import { API_URL } from '../config';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const { showToast } = useToast();
@@ -26,18 +27,31 @@ function Login() {
 
   return (
     <div className="auth-container">
+      <div className="auth-logo">✈️ TravelEase</div>
       <h2>Welcome Back 👋</h2>
+      <p className="auth-subtitle">Log in to continue planning your next trip</p>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" />
         </div>
         <div className="form-group">
           <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <div className="password-input-wrap">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter your password"
+            />
+            <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? '🙈' : '👁️'}
+            </span>
+          </div>
         </div>
         <button type="submit" className="btn-primary">Login</button>
-        <p style={{ textAlign: 'right', marginTop: '8px' }}>
+        <p style={{ textAlign: 'right', marginTop: '10px' }}>
           <Link to="/forgot-password" style={{ fontSize: '13px', color: '#7C3AED', fontWeight: '600' }}>Forgot Password?</Link>
         </p>
         {message && <p className="error-msg">{message}</p>}

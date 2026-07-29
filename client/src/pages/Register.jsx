@@ -7,6 +7,7 @@ function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
@@ -23,19 +24,32 @@ function Register() {
 
   return (
     <div className="auth-container">
-      <h2>Create Account ✈️</h2>
+      <div className="auth-logo">✈️ TravelEase</div>
+      <h2>Create Account</h2>
+      <p className="auth-subtitle">Join us and start planning your dream vacation</p>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Your full name" />
         </div>
         <div className="form-group">
           <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@example.com" />
         </div>
         <div className="form-group">
           <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <div className="password-input-wrap">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Create a password"
+            />
+            <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? '🙈' : '👁️'}
+            </span>
+          </div>
         </div>
         <button type="submit" className="btn-primary">Register</button>
         {message && <p className="error-msg" style={{ color: '#7C3AED' }}>{message}</p>}

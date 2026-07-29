@@ -260,17 +260,51 @@ body:has(.auth-container) {
   max-width: 420px;
   width: 90%;
   margin: 40px auto;
-  padding: 40px 35px;
+  padding: 35px 35px 30px;
   background: white;
   border-radius: 18px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
 
+.auth-logo {
+  text-align: center;
+  color: #7C3AED;
+  font-weight: 800;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
 .auth-container h2 {
   text-align: center;
   color: #1e293b;
-  margin-bottom: 25px;
-  font-size: 26px;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.password-input-wrap {
+  position: relative;
+}
+
+.password-input-wrap input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 15px;
+  user-select: none;
 }
 
 .form-group {
