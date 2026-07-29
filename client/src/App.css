@@ -261,7 +261,7 @@ body {
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .split-auth-overlay {
