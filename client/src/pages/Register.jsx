@@ -35,6 +35,7 @@ function Register() {
 
       <div className="split-auth-form">
         <div className="split-auth-form-inner">
+          <div className="split-auth-badge">✨ Join Us Today</div>
           <h2>Create Account</h2>
           <p className="auth-subtitle">Join us and start planning your dream vacation</p>
           <form onSubmit={handleSubmit}>

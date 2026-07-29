@@ -38,6 +38,7 @@ function Login() {
 
       <div className="split-auth-form">
         <div className="split-auth-form-inner">
+          <div className="split-auth-badge">🔒 Secure Login</div>
           <h2>Welcome Back 👋</h2>
           <p className="auth-subtitle">Log in to continue planning your next trip</p>
           <form onSubmit={handleSubmit}>

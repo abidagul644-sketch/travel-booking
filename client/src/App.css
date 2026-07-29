@@ -298,6 +298,7 @@ body {
 
 .split-auth-form {
   flex: 1;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -308,6 +309,19 @@ body {
 .split-auth-form-inner {
   width: 100%;
   max-width: 380px;
+}
+
+.split-auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F3F0FF;
+  color: #7C3AED;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .split-auth-form-inner h2 {
