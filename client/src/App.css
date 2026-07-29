@@ -2345,3 +2345,15 @@ body.dark-mode .dark-toggle {
   font-size: 13px;
   font-weight: 600;
 }
+/* SPLIT AUTH LAYOUT OVERRIDE FIX */
+#root > .split-auth {
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: 100vh !important;
+}
+
+@media (max-width: 850px) {
+  #root > .split-auth {
+    flex-direction: column !important;
+  }
+}
